@@ -97,7 +97,7 @@ That's as close as we might expect to .271, so we appear to have a reasonable so
 What is the probability that hitting the aircraft in the first 5 tries?
 -----------------------------------------------------------------------
 
-I have minimal interest in working the above math out for 5 events, so let's attempt to generalize our solution and create a program that can calculate this for us.
+Since the math here could become a bit of a grind, let's attempt to generalize our previous solution and create a program that can calculate this for us.
 
 ```python
 from functools import reduce
@@ -127,6 +127,15 @@ print(montecarlo([.1]*5))
 ```
 
 That looks about right.
+
+Having a general solution means that we can now calculate other fun results. For example, here's how many missiles it would take to ensure that we have nine nines of destructive reliability:
+
+```python
+for missiles in range(5,1000):
+  if p_union_all([.1]*missiles) > .999999999:
+    print(missiles)
+    break
+```
 
 Problem 2
 =========
