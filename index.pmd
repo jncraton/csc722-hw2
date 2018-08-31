@@ -136,10 +136,5 @@ Let’s assume 0 < x < 1 and -1 < y < 1
 What is the sample space?
 -------------------------
 
-(Hint: Sample is the whole area that x and y can occur)
-
 The sample space is {(x,y) | 0<x<1 ∧ -1<y<1}.
-
-
-
  	
