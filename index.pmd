@@ -47,11 +47,25 @@ We have the following definition that holds for independent, non-mutually exclus
 
 Let's take a moment to reason about the above formula and generalize it to any number of events. We initially sum the probabilities of two events. This would be all that we need to do if the events were mutually exclusive, but because their sample spaces overlap, we need to subtract probability that both events happen, otherwise we would be double-counting that outcome. Here's a first attempt to generalize this to 3 events:
 
-    P(A ∪ B ∪ C) = P(A) + P(B) + P(C)- P(A ∩ B) - P(B ∩ C) - P(A ∩ C)
+    P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(A ∩ B) - P(B ∩ C) - P(A ∩ C)
 
 This is close, but we are now failing to count the probability of all three events occuring as this was double-counted when we removed the probability of each pair of events. So, we need to add this back in as:
 
-    P(A ∪ B ∪ C) = P(A) + P(B) + P(C)- P(A ∩ B) - P(B ∩ C) - P(A ∩ C) + P(A ∩ B ∩ C)
+    P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(A ∩ B) - P(B ∩ C) - P(A ∩ C) + P(A ∩ B ∩ C)
+
+Mathematically, this can be thought of like this:
+
+    D = B ∪ C
+    
+    P(A ∪ B ∪ C) = P(A ∪ D)
+
+    P(A ∪ D) = P(A) + P(D) - P(A ∩ D)
+    P(D) = P(B ∪ C) = P(B) + P(C) - P(B ∩ C)
+    P(A ∩ D) = P(A) × P(D)
+
+    P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(B ∩ C) - P(A) × (P(B) + P(C) - P(B ∩ C)
+    ) TODO: THIS IS WRONG
+
 
 Recall the following truth:
 
@@ -66,7 +80,7 @@ To confirm our understanding, let's check our work with a quick montecarlo simul
 ```python
 from random import random
 
-sims = [any([random() <= p for p in [.1,.1,.1]]) for _ in range(0,100000)]
+sims = [any([random() <= p for p in [.1]*3]) for _ in range(0,100000)]
 
 print(len([s for s in sims if s])/len(sims))
 ```
@@ -75,6 +89,21 @@ That's as close as we might expect to .271, so we appear to have a reasonable so
 
 What is the probability that hitting the aircraft in the first 5 tries?
 -----------------------------------------------------------------------
+
+Let's again confirm our answer:
+
+```python
+sims = [any([random() <= p for p in [.1]*5]) for _ in range(0,1000000)]
+
+print(len([s for s in sims if s])/len(sims))
+
+print(.1+.1+.1+.1+.1 - .10 + .001 +.006 + .0001 +.0003 + .00001) 
+#A B C D E - 
+#AB AC AD AE BC BD BE CD CE DE + ABC + 
+#ABC ABD ABE ACD ACE ADE
+#ABCD ABDE ACDE
+```
+
 
 Problem 2
 =========
