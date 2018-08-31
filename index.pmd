@@ -31,31 +31,33 @@ We have the following definition that holds for independent, non-mutually exclus
 
     P(A ∪ B) = P(A) + P(B) - P(A ∩ B)
 
-These operations are commutative, so we can write our original statement as:
+Let's take a moment to reason about the above formula and generalize it to any number of events. We initially sum the probabilities of two events. This would be all that we need to do if the events were mutually exclusive, but because their sample spaces overlap, we need to subtract probability that both events happen, otherwise we would be double-counting that outcome. Here's a first attempt to generalize this to 3 events:
 
-    2] P(H₁ ∪ H₂ ∪ H₃) = P(H₁) + P(H₂) + P(H₃) - P(H₁ ∩ H₂ ∩ H₃)
+    P(A ∪ B ∪ C) = P(A) + P(B) + P(C)- P(A ∩ B) - P(B ∩ C) - P(A ∩ C)
 
-We also know the following for joint probabilities:
+This is close, but we are now failing to count the probability of all three events occuring as this was double-counted when we removed the probability of each pair of events. So, we need to add this back in as:
+
+    P(A ∪ B ∪ C) = P(A) + P(B) + P(C)- P(A ∩ B) - P(B ∩ C) - P(A ∩ C) + P(A ∩ B ∩ C)
+
+Recall the following truth:
 
     P(A ∩ B) = P(A) × P(B)
 
-This is also commutative, so we can rewrite [2] as:
+Now we can plug in our probabilities:
 
-    3] P(H₁ ∪ H₂ ∪ H₃) = P(H₁) + P(H₂) + P(H₃) - ( P(H₁) × P(H₂) × P(H₃) )
-
-Replacing our known probabilites, we get:
-
-    .1 + 1. + .1 - (.1 × .1 × .1) = .3 - .001 = .2999
-
+    P(A ∪ B ∪ C) = .1 + .1 + .1 - .1×.1 - .1×.1 - .1×.1 + .1×.1×.1 = .271
+  
 To confirm our understanding, let's check our work with a quick montecarlo simulation:
 
 ```python
 from random import random
 
-sims = [(random() <= .1 or random() <= .1 or random() <= .1) for _ in range(0,1000000)]
+sims = [(random() <= .1 or random() <= .1 or random() <= .1) for _ in range(0,10000000)]
 
 print(len([s for s in sims if s])/len(sims))
 ```
+
+That's as close as we might expect to .271, so we appear to have a reasonable solution.
 
 What is the probability that hitting the aircraft in the first 5 tries?
 -----------------------------------------------------------------------
