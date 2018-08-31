@@ -53,19 +53,25 @@ This is close, but we are now failing to count the probability of all three even
 
     P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(A ∩ B) - P(B ∩ C) - P(A ∩ C) + P(A ∩ B ∩ C)
 
-Mathematically, this can be thought of like this:
+Mathematically, this can be reasoned as follows:
 
-    D = B ∪ C
+    Let D = B ∪ C
     
+    
+
     P(A ∪ B ∪ C) = P(A ∪ D)
-
-    P(A ∪ D) = P(A) + P(D) - P(A ∩ D)
-    P(D) = P(B ∪ C) = P(B) + P(C) - P(B ∩ C)
-    P(A ∩ D) = P(A) × P(D)
-
-    P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(B ∩ C) - P(A) × (P(B) + P(C) - P(B ∩ C)
-    ) TODO: THIS IS WRONG
-
+    P(A ∪ B ∪ C) = P(A) + P(D) - P(A ∩ D)
+    P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(B ∩ C) - P(A ∩ D)
+      Because 
+        P(D) = P(B ∪ C)
+        P(D) = P(B) + P(C) - P(B ∩ C)
+        
+    P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(B ∩ C) - P(A) × P(D)
+      Because
+        P(A ∩ D) = P(A) × P(D)
+    
+    P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(B ∩ C) - P(A) × ( P(B) + P(C) - P(B ∩ C) )
+    P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(B ∩ C) - P(A ∩ B) - P(A ∩ C) + P(A ∩ B ∩ C)
 
 Recall the following truth:
 
