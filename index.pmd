@@ -12,7 +12,16 @@ What is the sample space if we have three missiles?
 
 The sample space (where h is hit and m is miss) is:
 
-((h,h,h),(h,h,m),(h,m,h),(h,m,m),(m,h,h),(m,h,m),(m,m,h),(m,m,m))
+    (
+      (h,h,h),
+      (h,h,m),
+      (h,m,h),
+      (h,m,m),
+      (m,h,h),
+      (m,h,m),
+      (m,m,h),
+      (m,m,m)
+    )
 
 Note that this assumes that the aircraft can survive a missile hit and be hit more than once.
 
@@ -21,11 +30,16 @@ What is the probability of hitting the aircraft in the first 3 tries?
 
 We know that the probability of hitting the aircraft in one try is 0.1. We can write this as:
 
-    P(H) = .1
+    P(A) = .1
+
+And the other two tries:
+
+    P(B) = .1
+    P(C) = .1
 
 When considering three attempts, we are looking for:
 
-    1] P(H₁ ∪ H₂ ∪ H₃)
+    P(A ∪ B ∪ C)
 
 We have the following definition that holds for independent, non-mutually exclusive events to help us solve this:
 
@@ -52,7 +66,7 @@ To confirm our understanding, let's check our work with a quick montecarlo simul
 ```python
 from random import random
 
-sims = [(random() <= .1 or random() <= .1 or random() <= .1) for _ in range(0,10000000)]
+sims = [any([random() <= p for p in [.1,.1,.1]]) for _ in range(0,100000)]
 
 print(len([s for s in sims if s])/len(sims))
 ```
