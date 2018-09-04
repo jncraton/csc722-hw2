@@ -82,10 +82,10 @@ Now we can plug in our probabilities:
 To confirm our understanding, let's check our work with a quick montecarlo simulation:
 
 ```python
-from random import random
+from random import random, sample
 
 def montecarlo(probs):
-  sims = [any([random() <= p for p in probs]) for _ in range(0,10000000)]
+  sims = [any([random() <= p for p in probs]) for _ in range(0,1000000)]
   
   return len([s for s in sims if s])/len(sims)
 
@@ -267,9 +267,11 @@ def sample_space_nr(events):
 
   return ss
 
-ss = sample_space_nr(['r1','r2','r3','b','g1','g2','g3','g4'])
+balls = ['r1','r2','r3','b','g1','g2','g3','g4']
 
-len(sample_space_nr(['r1','r2','r3','b','g1','g2','g3','g4']))
+ss = sample_space_nr(balls)
+
+len(ss)
 ```
 
 That has the correct number of items, so we are at least on the right track.
@@ -277,7 +279,7 @@ That has the correct number of items, so we are at least on the right track.
 The individual outcomes also look correct:
 
 ```python
-ss[0:10]
+list(ss)[0:10]
 ```
 
 What’s the probability that I see at least one red ball in the four balls that I have drawn?
@@ -286,39 +288,70 @@ What’s the probability that I see at least one red ball in the four balls that
 Because the events in the sample space are equally likely to occur, we can simply count the number of events that match our requirements and divide by the size of the sample space to get our probability.
 
 ```python
-successes = 0
+def at_least_one_red(outcome):
+  return 'r' in [b[0] for b in outcome]
+  
+def count_prob(ss, l):
+  successes = 0
+  
+  for outcome in ss:
+    if l(outcome): successes += 1
+  
+  return successes/len(ss)
 
-for outcome in ss:
-  if 'r' in [b[0] for b in outcome]: successes += 1
+count_prob(ss, at_least_one_red)
+```
 
-successes/len(ss)
+Let's try to validate this via Monte Carlo as well.
+
+```python
+def montecarlo2(events, l, count):
+  runs = 100000
+
+  successes = 0
+
+  for _ in range(runs):
+    outcome = sample(events, count)
+  
+    if l(outcome): successes += 1
+
+  return successes/runs
+
+montecarlo2(balls, at_least_one_red, 4)
 ```
 
 What is the probability that I don’t see any red ball at all in the four balls that I have drawn?
 -----
 
 ```python
-successes = 0
+def no_red(outcome):
+  return 'r' not in [b[0] for b in outcome]
 
-for outcome in ss:
-  if 'r' not in [b[0] for b in outcome]: successes += 1
-
-successes/len(ss)
+count_prob(ss, no_red)
 ```
 
 This is the inverse of the previous probability as expected.
+
+Let's again check our work:
+
+```python
+montecarlo2(balls, no_red, 4)
+```
 
 What is the probability that at least three balls out of four drawn balls have the same color?
 -----
 
 ```python
-successes = 0
+def at_least_three_same(outcome):
+  return len([b for b in outcome if b[0] == 'r']) >= 3 or \
+         len([b for b in outcome if b[0] == 'g']) >= 3 or \
+         len([b for b in outcome if b[0] == 'b']) >= 3
 
-for outcome in ss:
-  if len([b for b in outcome if b[0] == 'r']) >= 3 or \
-     len([b for b in outcome if b[0] == 'g']) >= 3 or \
-     len([b for b in outcome if b[0] == 'b']) >= 3:
-      successes += 1
+count_prob(ss, at_least_three_same)
+```
 
-successes/len(ss)
+And the validation via simulation:
+
+```python
+montecarlo2(balls, at_least_three_same, 4)
 ```
