@@ -289,6 +289,15 @@ Because the events in the sample space are equally likely to occur, we can simpl
 
 ```python
 def at_least_one_red(outcome):
+  """
+  Returns true if an outcome has at least one red ball
+
+  >>> at_least_one_red(['r1','g1','g2','g3'])
+  True
+  >>> at_least_one_red(['b','g1','g2','g3'])
+  False
+  """
+  
   return 'r' in [b[0] for b in outcome]
   
 def count_prob(ss, l):
@@ -325,6 +334,15 @@ What is the probability that I don’t see any red ball at all in the four balls
 
 ```python
 def no_red(outcome):
+  """
+  Returns true if an outcome contains no red balls
+  
+  >>> no_red(['r1','b','b','b'])
+  False
+  >>> no_red(['g1','g2','g3','b'])
+  True
+  """
+  
   return 'r' not in [b[0] for b in outcome]
 
 count_prob(ss, no_red)
@@ -343,6 +361,21 @@ What is the probability that at least three balls out of four drawn balls have t
 
 ```python
 def at_least_three_same(outcome):
+  """
+  Returns true if at least three balls have the same color
+
+  >>> at_least_three_same(['r1','b','g1','g2'])
+  False
+  >>> at_least_three_same(['r1','b','g1','r2'])
+  False
+  >>> at_least_three_same(['r1','r3','g1','r2'])
+  True
+  >>> at_least_three_same(['r1','g3','g1','g2'])
+  True
+  >>> at_least_three_same(['b1','b3','g1','b2'])
+  True
+  """
+
   return len([b for b in outcome if b[0] == 'r']) >= 3 or \
          len([b for b in outcome if b[0] == 'g']) >= 3 or \
          len([b for b in outcome if b[0] == 'b']) >= 3
