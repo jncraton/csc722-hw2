@@ -244,9 +244,15 @@ putting back them in the basket.
 How many items are in the sample space?
 ----
 
-(Hint: Sample space is the total different cases that I can draw two balls, for example (red, red), (green, blue))
+> (Hint: Sample space is the total different cases that I can draw two balls, for example (red, red), (green, blue))
 
-This could be calculated using combinations, but let's actually enumerate our sample space so that we can count matching items for the upcoming problems.
+Here's the answer using permutations:
+
+```python
+8*7*6*5
+```
+
+This can be calculated using permutations, but let's actually enumerate our sample space so that we can count matching items for the upcoming problems.
 
 ```python
 def sample_space_nr(events):
@@ -261,8 +267,17 @@ def sample_space_nr(events):
 
   return ss
 
-print(sample_space_nr(['r1','r2','r3','b','g1','g2','g3','g4']))
-print(len(sample_space_nr(['r1','r2','r3','b','g1','g2','g3','g4'])))
+ss = sample_space_nr(['r1','r2','r3','b','g1','g2','g3','g4'])
+
+len(sample_space_nr(['r1','r2','r3','b','g1','g2','g3','g4']))
+```
+
+That has the correct number of items, so we are at least on the right track.
+
+Here's the full enumeration:
+
+```python
+ss
 ```
 
 What’s the probability that I see at least one red ball in the four balls that I have drawn?
