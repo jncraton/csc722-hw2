@@ -248,7 +248,7 @@ How many items are in the sample space?
 
 This could be calculated using combinations, but let's actually enumerate our sample space so that we can count matching items for the upcoming problems.
 
-```
+```python
 def sample_space_nr(events):
   ss = set()
 
@@ -256,12 +256,13 @@ def sample_space_nr(events):
     for b in events:
       for c in events:
         for d in events:
-          if len([a,b,c,d]) == len(set([a,b,c,d]):
-            ss.add([a,b,c,d])
+          if len([a,b,c,d]) == len(set([a,b,c,d])):
+            ss.add((a,b,c,d))
 
   return ss
 
-sample_space_nr(['r1','r2','r3','b','g1','g2','g3','g4'])
+print(sample_space_nr(['r1','r2','r3','b','g1','g2','g3','g4']))
+print(len(sample_space_nr(['r1','r2','r3','b','g1','g2','g3','g4'])))
 ```
 
 What’s the probability that I see at least one red ball in the four balls that I have drawn?
