@@ -274,17 +274,51 @@ len(sample_space_nr(['r1','r2','r3','b','g1','g2','g3','g4']))
 
 That has the correct number of items, so we are at least on the right track.
 
-Here's the full enumeration:
+The individual outcomes also look correct:
 
 ```python
-ss
+ss[0:10]
 ```
 
 What’s the probability that I see at least one red ball in the four balls that I have drawn?
 -----
 
+Because the events in the sample space are equally likely to occur, we can simply count the number of events that match our requirements and divide by the size of the sample space to get our probability.
+
+```python
+successes = 0
+
+for outcome in ss:
+  if 'r' in [b[0] for b in outcome]: successes += 1
+
+successes/len(ss)
+```
+
 What is the probability that I don’t see any red ball at all in the four balls that I have drawn?
 -----
 
+```python
+successes = 0
+
+for outcome in ss:
+  if 'r' not in [b[0] for b in outcome]: successes += 1
+
+successes/len(ss)
+```
+
+This is the inverse of the previous probability as expected.
+
 What is the probability that at least three balls out of four drawn balls have the same color?
 -----
+
+```python
+successes = 0
+
+for outcome in ss:
+  if len([b for b in outcome if b[0] == 'r']) >= 3 or \
+     len([b for b in outcome if b[0] == 'g']) >= 3 or \
+     len([b for b in outcome if b[0] == 'b']) >= 3:
+      successes += 1
+
+successes/len(ss)
+```
