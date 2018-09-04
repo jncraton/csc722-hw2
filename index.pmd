@@ -150,8 +150,88 @@ The sample space is {(x,y) | 0<x<1 ∧ -1<y<1}.
 What is the probability that $x^{2} + {(1 - y)}^{2} < \frac{1}{9}$
 -----
 
+Assuming uniform probability throughout our sample space, the probability of the above equation being satisfied will be equal to the proportion of the sample space that it encompasses.
+
+These inequality constraints can be graphed as:
+
+![Figure from WolframAlpha: 0<x, x<1, -1<y, y<1, x^2+(1-y)^2<1/9](media/2-2-1.gif)
+
+First we calculate the area of this quarter circle:
+
+    πr²
+    π(1/9)
+    π/9 is the full circle area
+    π/36 is the quarter circle area
+
+The probability can be calculated by determining the proportional of the sample space covered by this area, so our final result is:
+
+    ½ × π/36
+    π/72
+
+Here's the approximate decimal probability:
+
+```python
+import math
+
+(1/72) * math.pi
+```
+
+Let's check this:
+
+```python
+events = 100000
+successes = 0
+
+for i in range(0,events):
+  x = random()
+  y = 2*random() - 1
+  if x**2 + (1-y)**2 < 1/9: successes+=1
+
+successes/events
+```
+
+That looks about right.
+
 What is the probability that $x^{2} + {(1 - y)}^{2} > \frac{1}{16}$
 -----
+
+Here's a plot of the inequalities:
+
+![Figure from WolframAlpha: 0<x, x<1, -1<y, y<1, x^2+(1-y)^2>1/16](media/2-3-1.gif)
+
+Let's again calculate the quarter circle area:
+
+    πr²
+    π(1/16)
+    π/16 is the full circle area
+    π/64 is the quarter circle area
+
+Because our sample space has an area of 2, we need to scale our area to fit the probability distribution. We also need to take the inverse of the area because we are looking for the area *outside* of the area we just calculated. Here's the final probability:
+
+    1 - (1/2) π/64
+    1 - π/128
+
+As a decimal approximations:
+
+```python
+1 - math.pi/128
+```
+
+Now let's check our work.
+
+```python
+events = 100000
+successes = 0
+
+for i in range(0,events):
+  x = random()
+  y = 2*random() - 1
+  if x**2 + (1-y)**2 > 1/16: successes+=1
+
+successes/events
+```
+
+That looks correct.
 
 Problem 3
 =========
@@ -164,9 +244,7 @@ putting back them in the basket.
 How many items are in the sample space?
 ----
 
-(Hint: Sample space is
-the total different cases that I can draw two balls, for example
-(red, red), (green, blue))
+(Hint: Sample space is the total different cases that I can draw two balls, for example (red, red), (green, blue))
 
 What’s the probability that I see at least one red ball in the four balls that I have drawn?
 -----
@@ -176,7 +254,3 @@ What is the probability that I don’t see any red ball at all in the four balls
 
 What is the probability that at least three balls out of four drawn balls have the same color?
 -----
-
-
-
- 	
