@@ -146,4 +146,37 @@ What is the sample space?
 -------------------------
 
 The sample space is {(x,y) | 0<x<1 ∧ -1<y<1}.
+
+What is the probability that $x^{2} + {(1 - y)}^{2} < \frac{1}{9}$
+-----
+
+What is the probability that $x^{2} + {(1 - y)}^{2} > \frac{1}{16}$
+-----
+
+Problem 3
+=========
+
+I have a basket with three red balls, one blue balls and four
+green balls. I draw 4 balls. I draw one and after that another one
+and after another one. Therefore, in total I draw four balls without
+putting back them in the basket.
+
+How many items are in the sample space?
+----
+
+(Hint: Sample space is
+the total different cases that I can draw two balls, for example
+(red, red), (green, blue))
+
+What’s the probability that I see at least one red ball in the four balls that I have drawn?
+-----
+
+What is the probability that I don’t see any red ball at all in the four balls that I have drawn?
+-----
+
+What is the probability that at least three balls out of four drawn balls have the same color?
+-----
+
+
+
  	
