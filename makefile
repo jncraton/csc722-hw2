@@ -44,6 +44,9 @@ test: $(SRC).py
 	
 	python3 -m doctest $(SRC)-test.py
 
+readme.md: gen_readme.py
+	python3 gen_readme.py > readme.md
+
 clean:
 	rm -f $(SRC).txt $(SRC).odt $(SRC).docx $(SRC).pdf $(SRC).md $(SRC).py $(SRC)-test.py $(SRC).html slides.html
 	rm -rf figures
