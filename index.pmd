@@ -78,6 +78,12 @@ Recall the following truth:
 Now we can plug in our probabilities:
 
     P(A ∪ B ∪ C) = .1 + .1 + .1 - .1×.1 - .1×.1 - .1×.1 + .1×.1×.1 = .271
+
+So the correct answer is:
+
+    .271
+
+### Checking our work
   
 To confirm our understanding, let's check our work with a quick montecarlo simulation:
 
@@ -119,6 +125,8 @@ That matches our previous result for three events, so let's calculate the answer
 ```python
 p_union_all([.1]*5)
 ```
+
+### Checking our work
 
 That should be the correct answer. Let's again confirm our answer via simulation:
 
@@ -176,6 +184,8 @@ import math
 (1/72) * math.pi
 ```
 
+### Checking our work
+
 Let's check this:
 
 ```python
@@ -216,6 +226,8 @@ As a decimal approximations:
 ```python
 1 - math.pi/128
 ```
+
+### Checking our work
 
 Now let's check our work.
 
@@ -301,6 +313,8 @@ def count_prob(Ω, l):
 count_prob(Ω, at_least_one_red)
 ```
 
+### Checking our work
+
 Let's try to validate this via Monte Carlo as well.
 
 ```python
@@ -340,6 +354,8 @@ count_prob(Ω, no_red)
 
 This is the inverse of the previous probability as expected.
 
+### Checking our work
+
 Let's again check our work:
 
 ```python
@@ -373,7 +389,9 @@ def at_least_three_same(outcome):
 count_prob(Ω, at_least_three_same)
 ```
 
-And the validation via simulation:
+### Checking our work
+
+Here is some validation via simulation:
 
 ```python
 montecarlo2(balls, at_least_three_same, 4)
