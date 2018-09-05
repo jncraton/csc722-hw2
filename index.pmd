@@ -89,7 +89,7 @@ def montecarlo(probs):
   
   return len([s for s in sims if s])/len(sims)
 
-print(montecarlo([.1]*3))
+montecarlo([.1]*3)
 ```
 
 That's as close as we might expect to .271, so we appear to have a reasonable solution.
@@ -111,19 +111,19 @@ def p_union(a,b):
 def p_union_all(probs):
   return reduce(p_union, probs, 0.0)
 
-print(p_union_all([.1]*3))
+p_union_all([.1]*3)
 ```
 
 That matches our previous result for three events, so let's calculate the answer for 5 events:
 
 ```python
-print(p_union_all([.1]*5))
+p_union_all([.1]*5)
 ```
 
 That should be the correct answer. Let's again confirm our answer via simulation:
 
 ```python
-print(montecarlo([.1]*5))
+montecarlo([.1]*5)
 ```
 
 That looks about right.
