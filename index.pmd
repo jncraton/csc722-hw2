@@ -252,24 +252,14 @@ Here's the answer using permutations:
 8*7*6*5
 ```
 
-This can be calculated using permutations, but let's actually enumerate our sample space so that we can count matching items for the upcoming problems.
+The length can be calculated easily as above, but let's actually enumerate our sample space so that we can count matching items for the upcoming problems.
 
 ```python
-def sample_space_nr(events):
-  ss = set()
-
-  for a in events:
-    for b in events:
-      for c in events:
-        for d in events:
-          if len([a,b,c,d]) == len(set([a,b,c,d])):
-            ss.add((a,b,c,d))
-
-  return ss
+from itertools import permutations
 
 balls = ['r1','r2','r3','b','g1','g2','g3','g4']
 
-ss = sample_space_nr(balls)
+ss = list(permutations(balls, 4))
 
 len(ss)
 ```
