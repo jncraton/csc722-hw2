@@ -152,9 +152,9 @@ What is the probability that $x^{2} + {(1 - y)}^{2} < \frac{1}{9}$
 
 Assuming uniform probability throughout our sample space, the probability of the above equation being satisfied will be equal to the proportion of the sample space that it encompasses.
 
-These inequality constraints can be graphed as:
+These inequality constraints can be [graphed](https://www.wolframalpha.com/input/?i=0%3Cx,+x%3C1,+-1%3Cy,+y%3C1,+x2%2B(1-y)2%3C1%2F9) as:
 
-![Figure from WolframAlpha: 0<x, x<1, -1<y, y<1, x^2+(1-y)^2<1/9](media/2-2-1.gif)
+![](media/2-2-1.gif)
 
 First we calculate the area of this quarter circle:
 
@@ -195,9 +195,9 @@ That looks about right.
 What is the probability that $x^{2} + {(1 - y)}^{2} > \frac{1}{16}$
 -----
 
-Here's a plot of the inequalities:
+Here's a [](https://www.wolframalpha.com/input/?i=0%3Cx,+x%3C1,+-1%3Cy,+y%3C1,+x%5E2%2B(1-y)%5E2%3E1%2F16) of the inequalities:
 
-![Figure from WolframAlpha: 0<x, x<1, -1<y, y<1, x^2+(1-y)^2>1/16](media/2-3-1.gif)
+![](media/2-3-1.gif)
 
 Let's again calculate the quarter circle area:
 
