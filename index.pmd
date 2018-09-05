@@ -259,9 +259,9 @@ from itertools import permutations
 
 balls = ['r1','r2','r3','b','g1','g2','g3','g4']
 
-ss = list(permutations(balls, 4))
+Ω = list(permutations(balls, 4))
 
-len(ss)
+len(Ω)
 ```
 
 That has the correct number of items, so we are at least on the right track.
@@ -269,7 +269,7 @@ That has the correct number of items, so we are at least on the right track.
 The individual outcomes also look correct:
 
 ```python
-list(ss)[0:10]
+Ω[0:10]
 ```
 
 What’s the probability that I see at least one red ball in the four balls that I have drawn?
@@ -290,15 +290,15 @@ def at_least_one_red(outcome):
   
   return 'r' in [b[0] for b in outcome]
   
-def count_prob(ss, l):
+def count_prob(Ω, l):
   successes = 0
   
-  for outcome in ss:
+  for outcome in Ω:
     if l(outcome): successes += 1
   
-  return successes/len(ss)
+  return successes/len(Ω)
 
-count_prob(ss, at_least_one_red)
+count_prob(Ω, at_least_one_red)
 ```
 
 Let's try to validate this via Monte Carlo as well.
@@ -335,7 +335,7 @@ def no_red(outcome):
   
   return 'r' not in [b[0] for b in outcome]
 
-count_prob(ss, no_red)
+count_prob(Ω, no_red)
 ```
 
 This is the inverse of the previous probability as expected.
@@ -370,7 +370,7 @@ def at_least_three_same(outcome):
          len([b for b in outcome if b[0] == 'g']) >= 3 or \
          len([b for b in outcome if b[0] == 'b']) >= 3
 
-count_prob(ss, at_least_three_same)
+count_prob(Ω, at_least_three_same)
 ```
 
 And the validation via simulation:
