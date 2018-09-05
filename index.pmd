@@ -49,7 +49,7 @@ Let's take a moment to reason about the above formula and generalize it to any n
 
     P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(A ∩ B) - P(B ∩ C) - P(A ∩ C)
 
-This is close, but we are now failing to count the probability of all three events occuring as this was double-counted when we removed the probability of each pair of events. So, we need to add this back in as:
+This is close, but we are now failing to count the probability of all three events occurring as this was double-counted when we removed the probability of each pair of events. So, we need to add this back in as:
 
     P(A ∪ B ∪ C) = P(A) + P(B) + P(C) - P(A ∩ B) - P(B ∩ C) - P(A ∩ C) + P(A ∩ B ∩ C)
 
@@ -85,7 +85,7 @@ So the correct answer is:
 
 ### Checking our work
   
-To confirm our understanding, let's check our work with a quick montecarlo simulation:
+To confirm our understanding, let's check our work with a quick Monte Carlo simulation:
 
 ```python
 from random import random, sample
