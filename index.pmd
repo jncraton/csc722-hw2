@@ -163,7 +163,7 @@ First we calculate the area of this quarter circle:
     π/9 is the full circle area
     π/36 is the quarter circle area
 
-The probability can be calculated by determining the proportional of the sample space covered by this area, so our final result is:
+The probability can be calculated by determining the proportion of the sample space covered by this area, so our final result is:
 
     ½ × π/36
     π/72
